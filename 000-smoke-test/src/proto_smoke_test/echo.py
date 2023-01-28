@@ -30,7 +30,6 @@ def handle_echo(conn: socket.SocketIO, addr) -> None:
                 break
         logger.debug(f"sending data: {data}")
         conn.sendall(msg)
-    conn.close()
     logger.info(f"done serving {addr}")
 
 
