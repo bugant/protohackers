@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proto-smoke-test"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "BSD 3-Clause License"}
+dependencies = ["click"]
+dynamic=["version"]
+
+[project.scripts]
+proto-smoke-test = "proto_smoke_test.cli:cli"
