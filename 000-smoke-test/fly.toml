@@ -1,4 +1,4 @@
-# fly.toml file generated for proto-smoke-test on 2023-01-28T14:10:17+01:00
+# fly.toml file generated for proto-smoke-test on 2023-01-31T08:57:52+01:00
 
 app = "proto-smoke-test"
 kill_signal = "SIGINT"
@@ -24,9 +24,3 @@ processes = []
   [[services.ports]]
     handlers = []
     port = 8001
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
