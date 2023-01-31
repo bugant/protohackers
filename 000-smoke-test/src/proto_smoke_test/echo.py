@@ -7,7 +7,6 @@ import sys
 ECHO_PORT = 8001
 BACKLOG_CONNECTIONS = 10
 READ_CHUNK_SIZE = 1024
-MAX_MSG_SIZE = 1024 * 1024 * 10  # 10MB
 MAX_WORKER = 10
 
 
@@ -16,27 +15,24 @@ logger = logging.getLogger(__name__)
 
 def handle_echo(conn: socket.SocketIO, addr) -> None:
     logging.info(f"got new connection from {addr}")
-    msg = b''
     with conn:
         while True:
             try:
+                logger.debug("reading data from %s", addr)
                 data = conn.recv(READ_CHUNK_SIZE, socket.MSG_DONTWAIT)
-                logger.debug(f"got data: {data}")
+                logger.debug("got data from %s: %s", addr, data)
+                conn.sendall(data)
+                if len(data) == 0:
+                    break
             except BlockingIOError:
                 break
-            msg += data
-            if len(msg) > MAX_MSG_SIZE:
-                logger.error("too many data")
-                break
-        logger.debug(f"sending data: {data}")
-        conn.sendall(msg)
         conn.shutdown(socket.SHUT_RDWR)
-    logger.info(f"done serving {addr}")
+    logger.info("done serving %s", addr)
 
 
 def shutdown(sock: socket.SocketIO, pool: Pool) -> callable:
     def _shutdown(_signum, _frame):
-        print("shutting down...")
+        logger.info("shutting down...")
         pool.terminate()
         pool.join()
         sock.shutdown(socket.SHUT_RDWR)
