@@ -1,0 +1,25 @@
+# fly.toml file generated for proto-prime-time on 2023-02-09T18:20:13+01:00
+
+app = "proto-prime-time"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  internal_port = 8001
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = []
+    port = 8001
