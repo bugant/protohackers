@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proto-means-to-an-end"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "BSD 3-Clause License"}
+dependencies = [
+  "attrs",
+  "click"
+]
+dynamic=["version"]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[project.scripts]
+proto-means-to-an-end = "proto_means_to_an_end.cli:cli"

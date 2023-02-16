@@ -1,0 +1,15 @@
+*.pyc
+*~
+.cache
+__pycache__
+/virtual
+/build
+/dist
+/eggs
+*.egg-info/
+*.egg
+/.eggs/
+/wheelhouse*
+.tox/
+*.swp
+*.swo
