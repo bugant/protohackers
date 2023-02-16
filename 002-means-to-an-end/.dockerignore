@@ -1,0 +1,21 @@
+# flyctl launch added from .gitignore
+**/*.pyc
+**/*~
+**/.cache
+**/__pycache__
+virtual
+build
+dist
+eggs
+**/*.egg-info
+**/*.egg
+.eggs
+wheelhouse*
+**/.tox
+**/*.swp
+**/*.swo
+
+# flyctl launch added from .pytest_cache/.gitignore
+# Created by pytest automatically.
+.pytest_cache/**/*
+fly.toml
